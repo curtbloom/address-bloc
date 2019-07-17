@@ -69,9 +69,11 @@ module.exports = class MenuController {
   }
 
   remindMe(){
+    this.clear();
     var lifelesson = "Learning is a life-long pursuit"
     console.log(lifelesson);
-    return lifelesson; 
+    return lifelesson;
+    this.main();
   }
 
 }
