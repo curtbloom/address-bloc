@@ -1,23 +1,19 @@
 {
   "development": {
-    "username": "root",
+    "username": "curtisbloomfield",
     "password": null,
-    "database": "database_development",
+    "database": "address-bloc-dev",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres",
+    "logging": false,
+    "port": "5432"
   },
   "test": {
-    "username": "root",
+    "username": "curtisbloomfield",
     "password": null,
-    "database": "database_test",
+    "database": "address-bloc-test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres",
+    "logging": false
   }
 }
