@@ -72,24 +72,25 @@ describe("ContactController", () => {
            const magus = ["Magus Johnson", "101-010-101", "magus@squaresoft.com"];
            const alloy = ["Alloy Rodriguez", "111-111-111", "allow@guerrilla-games.com"];
 
-          it("should return null when called with an empty array", () => {
-             expect(this.book.iterativeSearch([], "Alloy")).toBeNull();
+      it("should return null when called with an empty array", () => {
+            expect(this.book.iterativeSearch([], "Alloy")).toBeNull();
            });
+
          });
-          it("should return null when contact is not found", (done) => {
-              this.book.addContact(...zelda)
-                .then(() => {
-                    this.book.getContacts()
-                      .then((contacts) => {
-                          expect(this.book.iterativeSearch(contacts, "Alloy Rodriguez")).toBeNull();
-                            done();
-                          })
-                          .catch((err) => {
-                            console.log(err);
-                            done();
-                          });
-                        });
-                      });
+      it("should return null when contact is not found", (done) => {
+        this.book.addContact(...zelda)
+          .then(() => {
+            this.book.getContacts()
+              .then((contacts) => {
+                  expect(this.book.iterativeSearch(contacts, "Alloy Rodriguez")).toBeNull();
+                    done();
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    done();
+                  });
+                });
+              });
 
       it("should return the contact if found", (done) => {
         this.book.addContact(...alloy)

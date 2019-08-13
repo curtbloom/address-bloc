@@ -92,6 +92,6 @@ module.exports = class MenuController {
   }
 
   getContactCount(){
-  return this.contacts.length;
+  return this.book.getContacts();
   }
 }

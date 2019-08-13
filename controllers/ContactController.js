@@ -33,7 +33,7 @@ module.exports = class ContactController {
         }
      ];
    }
-   
+
   addContact(name, phone, email) {
     return Contact.create({name, phone, email})
   }
@@ -44,7 +44,7 @@ module.exports = class ContactController {
 
   iterativeSearch(contacts, target){
    for (let contact of contacts){
-     if (contact.name.toLowerCase() == target.name.toLowerCase()){
+     if (contact.name.toLowerCase() === target.name.toLowerCase()){
        return contact;
      }
    }
