@@ -1,4 +1,3 @@
-const inquirer = require("inquirer");
 const Contact = require("../models").Contact;
 
 module.exports = class ContactController {
@@ -14,18 +13,41 @@ module.exports = class ContactController {
            return val !== "";
          }
        },
+
        {
+         type: "input",
+        name: "phone",
+        message: "Contact's phone number - ",
+        validate(val){
+          return val !== "";
+          }
+        },
+
+        {
          type: "input",
          name: "email",
          message: "Contact's email - ",
          validate(val){
            return val !== "";
-         }
-       }
+          }
+        }
      ];
+   }
+   
+  addContact(name, phone, email) {
+    return Contact.create({name, phone, email})
   }
 
-  addContact(name, phone, email){
-    return Contact.create({name, phone, email})
+  getContacts(){
+    return Contact.findAll()
+  }
+
+  iterativeSearch(contacts, target){
+   for (let contact of contacts){
+     if (contact.name.toLowerCase() == target.name.toLowerCase()){
+       return contact;
+     }
+   }
+     return null;
   }
 }

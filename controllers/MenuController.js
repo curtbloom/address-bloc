@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const ContactController = require('./ContactController');
 
 module.exports = class MenuController {
   constructor(){
@@ -9,12 +10,13 @@ module.exports = class MenuController {
         message: "Please choose from an option below: ",
         choices: [
           "Add new contact",
+            "View all contacts",
           "Exit",
           "getDate"
         ]
       }
     ];
-    this.contacts = [];
+    this.book = new ContactController();
   }
 
   main(){
@@ -28,6 +30,9 @@ module.exports = class MenuController {
           this.exit();
         case "getDate":
           this.getDate();
+        case "View all contacts":
+          this.getContacts();
+          break;
         default:
           console.log("Invalid input");
           this.main();
@@ -42,10 +47,36 @@ module.exports = class MenuController {
     console.log("\x1Bc");
   }
 
-  addContact(){
+  addContact() {
+      this.clear();
+     inquirer.prompt(this.book.addContactQuestions).then((answers) =>{
+         this.book.addContact(answers.name, answers.phone, answers.email).then((contact) =>{
+             console.log("Contact added successfully!");
+             this.main();
+         }).catch((err)=>{
+             console.log(err);
+             this.main();
+         });
+     });
+  }
+
+  getContacts(){
     this.clear();
-    console.log('addContact called');
-    this.main();
+
+    this.book.getContacts().then((contacts) => {
+        for (let contact of contacts) {
+            console.log(`
+            name: ${contact.name}
+            phone number: ${contact.phone}
+            email: ${contact.email}
+            ----------------`
+            );
+        }
+        this.main();
+    }).catch((err) => {
+        console.log(err);
+        this.main();
+    });
   }
 
   exit(){
@@ -63,5 +94,4 @@ module.exports = class MenuController {
   getContactCount(){
   return this.contacts.length;
   }
-
 }
