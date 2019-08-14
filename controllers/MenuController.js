@@ -11,12 +11,12 @@ module.exports = class MenuController {
                 choices: [
                     'Add new contact',
                     'Get current date',
-                    'remindMe',
+                    'View all contacts',
                     'Exit'
                 ]
             }
         ];
-        this.contacts = [];
+        this.book = new ContactController();
     }
 
     main() {
@@ -28,6 +28,9 @@ module.exports = class MenuController {
                     break;
                 case "Get current date":
                     this.getDate();
+                    break;
+                case "View all contacts":
+                    this.getContacts();
                     break;
                 case "Exit":
                     this.exit();
@@ -75,4 +78,23 @@ module.exports = class MenuController {
   remindMe() {
     return "Learning is a life-long pursuit."
     }
+
+  getContacts(){
+    this.clear();
+
+    this.book.getContacts().then((contacts) => {
+      for (let contact of contacts) {
+        console.log(`
+        name: ${contact.name}
+        phone number: ${contact.phone}
+        email: ${contact.email}
+        ---------------`
+        );
+      }
+      this.main();
+    }).catch((err) => {
+      console.log(err);
+      this.main();
+    });
+  }
 }
