@@ -1,4 +1,3 @@
-const inquirer = require("inquirer");
 const Contact = require("../models").Contact;
 
 module.exports = class ContactController {
