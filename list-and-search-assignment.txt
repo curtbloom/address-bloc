@@ -1,0 +1,12 @@
+1. Since the data is sorted I would do a Binary search
+   because it would cut the data that needs to be searched in half
+   and find the result much faster.
+
+2. Since this is unsorted and not a large list I would use an iterative
+   search.
+
+3. Another sorted list so I would use a Binary search.
+
+4. If I have the resources to, I would sort the checkpoints
+   then I would do a Binary search. If I do not have the resoureces
+   to sort them I would be forced to do an iterative search. 
